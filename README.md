@@ -16,7 +16,7 @@ Run the following command to build & run the container
 
 The container will be running at `docker run -dp 3000:3000 serverless`
 
-After a few seconds, open your web browser to http://localhost:3000. You should see our app.
+After a few seconds, open your web browser to http://localhost:3000/dev/livros. You should see our app.
 
 Edit serverless.yml to add new API methods, and define the handler to be called when the URI is hit. 
 

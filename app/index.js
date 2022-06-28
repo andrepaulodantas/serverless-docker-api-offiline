@@ -1,36 +1,26 @@
-const http = require('http'); 
 const express = require('express'); 
-const cors = require('cors');
 const app = express(); 
+const axios = require('axios');
 
-app.use(cors); /* NEW */
-
-// Then pass these options to cors:
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-var corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-    }
-
-app.use(cors(corsOptions))
-
-
-const url = "http://localhost:3000/dev/livros";
-http.get(url, res => {
-  let data = '';
-  res.on('data', chunk => {
-    data += chunk;
+app.get("/", (req, res, next) => {
+  return res.status(200).json({
+    message: "API QUE CONSOME OUTRA API",
   });
-  res.on('end', () => {
-    data = JSON.parse(data);
-    console.log(data);
-  })
-}).on('error', err => {
-  console.log(err.message);
+});
+
+var config = {
+  method: 'get',
+  url: 'http://localhost:3000/dev/livros',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));  
 })
+.catch(function (error) {
+  console.log(error);
+});
 
 //listen
 

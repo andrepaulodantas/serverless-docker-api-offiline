@@ -1,0 +1,26 @@
+org: andrearaujo
+app: aws-node-express-dynamodb-api
+service: aws-node-express-api
+
+plugins:
+ # npm i serverless-dynamodb-local --save-dev && sls dynamodb install
+   - "serverless-offline"
+
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+custom:
+   serverless-offline:
+      httpPort: 9090
+      lambdaPort: 4000
+
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
